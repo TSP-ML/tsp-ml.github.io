@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn About TSP - TSP(ML)</title>
+    <meta name="description" content="Learn about the Travelling Salesman Problem, its importance, and how TSP(ML) solves it using machine learning and advanced algorithms.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">TSP(ML)</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="info.html" class="nav-link active">Learn</a></li>
+                <li><a href="demo.html" class="nav-link">Demo</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Understanding the Travelling Salesman Problem</h1>
+            <p>Discover one of computer science's most famous optimization challenges and how TSP(ML) makes it accessible to everyone.</p>
+        </div>
+    </section>
+
+    <!-- What is TSP Section -->
+    <section class="what-is-tsp">
+        <div class="container">
+            <div class="tsp-explanation">
+                <div class="explanation-text">
+                    <h2>What is the Travelling Salesman Problem?</h2>
+                    <p>
+                        The Travelling Salesman Problem (TSP) is a classic optimization problem that asks: "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
+                    </p>
+                    <p>
+                        While this might sound simple, the TSP is actually one of the most intensively studied problems in computational mathematics. As the number of cities increases, the number of possible routes grows factorially, making it computationally challenging to find the optimal solution.
+                    </p>
+                    <div class="complexity-example">
+                        <h3>The Complexity Challenge</h3>
+                        <div class="complexity-stats">
+                            <div class="complexity-item">
+                                <span class="cities">5 cities</span>
+                                <span class="routes">12 possible routes</span>
+                            </div>
+                            <div class="complexity-item">
+                                <span class="cities">10 cities</span>
+                                <span class="routes">181,440 possible routes</span>
+                            </div>
+                            <div class="complexity-item">
+                                <span class="cities">20 cities</span>
+                                <span class="routes">60+ quintillion routes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation-visual">
+                    <div class="interactive-tsp">
+                        <h3>Interactive Example</h3>
+                        <svg viewBox="0 0 400 300" class="tsp-demo-svg">
+                            <!-- Cities -->
+                            <g class="demo-cities">
+                                <circle cx="80" cy="80" r="12" class="demo-city" data-city="A"/>
+                                <text x="80" y="85" text-anchor="middle" class="city-label">A</text>
+                                
+                                <circle cx="320" cy="60" r="12" class="demo-city" data-city="B"/>
+                                <text x="320" y="65" text-anchor="middle" class="city-label">B</text>
+                                
+                                <circle cx="350" cy="180" r="12" class="demo-city" data-city="C"/>
+                                <text x="350" y="185" text-anchor="middle" class="city-label">C</text>
+                                
+                                <circle cx="200" cy="220" r="12" class="demo-city" data-city="D"/>
+                                <text x="200" y="225" text-anchor="middle" class="city-label">D</text>
+                                
+                                <circle cx="50" cy="200" r="12" class="demo-city" data-city="E"/>
+                                <text x="50" y="205" text-anchor="middle" class="city-label">E</text>
+                            </g>
+                            
+                            <!-- Bad Route -->
+                            <g class="bad-route" style="display: none;">
+                                <path d="M 80 80 L 350 180 L 320 60 L 50 200 L 200 220 L 80 80" class="demo-route bad"/>
+                                <text x="200" y="30" text-anchor="middle" class="route-label bad">Inefficient Route</text>
+                            </g>
+                            
+                            <!-- Good Route -->
+                            <g class="good-route" style="display: none;">
+                                <path d="M 80 80 L 320 60 L 350 180 L 200 220 L 50 200 L 80 80" class="demo-route good"/>
+                                <text x="200" y="30" text-anchor="middle" class="route-label good">Optimized Route</text>
+                            </g>
+                        </svg>
+                        <div class="demo-controls">
+                            <button id="show-bad-route" class="btn btn-outline">Show Bad Route</button>
+                            <button id="show-good-route" class="btn btn-primary">Show Optimal Route</button>
+                            <button id="reset-demo" class="btn btn-outline">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Important Section -->
+    <section class="why-important">
+        <div class="container">
+            <h2 class="section-title">Why is TSP Important?</h2>
+            <p class="section-subtitle">The applications of TSP solutions extend far beyond theoretical computer science</p>
+            
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="app-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Logistics & Delivery</h3>
+                    <p>Optimize delivery routes to save fuel, reduce costs, and improve customer satisfaction. Companies like UPS and FedEx use TSP algorithms to plan efficient delivery schedules.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="app-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Circuit Board Manufacturing</h3>
+                    <p>Minimize the drilling time in printed circuit board production by finding the optimal path for drilling holes, significantly reducing manufacturing costs.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="app-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>DNA Sequencing</h3>
+                    <p>Arrange DNA fragments in the correct order by finding the shortest superstring that contains all fragments, crucial for genetic research and medicine.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="app-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Tourist Planning</h3>
+                    <p>Help travelers create efficient sightseeing routes that maximize their time and minimize travel between attractions in unfamiliar cities.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="app-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3>Satellite Scheduling</h3>
+                    <p>Optimize the order in which satellites capture images of different locations on Earth to minimize energy consumption and maximize coverage.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Manufacturing</h3>
+                    <p>Optimize machine scheduling and production line sequencing to minimize downtime and maximize efficiency in manufacturing processes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How TSP(ML) Solves It -->
+    <section class="how-we-solve">
+        <div class="container">
+            <h2 class="section-title">How TSP(ML) Solves the Problem</h2>
+            <div class="solution-approach">
+                <div class="approach-card">
+                    <div class="approach-number">1</div>
+                    <div class="approach-content">
+                        <h3>Machine Learning Optimization</h3>
+                        <p>We use advanced machine learning algorithms that learn from patterns in routing data to find near-optimal solutions quickly, even for large problem instances.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Neural Networks</span>
+                            <span class="tech-tag">Genetic Algorithms</span>
+                            <span class="tech-tag">Reinforcement Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-number">2</div>
+                    <div class="approach-content">
+                        <h3>Hybrid Algorithms</h3>
+                        <p>We combine classical optimization techniques with modern heuristics to balance solution quality with computational efficiency.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Simulated Annealing</span>
+                            <span class="tech-tag">Ant Colony Optimization</span>
+                            <span class="tech-tag">Local Search</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-number">3</div>
+                    <div class="approach-content">
+                        <h3>Real-World Integration</h3>
+                        <p>Our solutions integrate with real mapping data, considering actual travel times, traffic patterns, and road conditions for practical applicability.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Live Traffic Data</span>
+                            <span class="tech-tag">Geographic APIs</span>
+                            <span class="tech-tag">Route Constraints</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-number">4</div>
+                    <div class="approach-content">
+                        <h3>User-Friendly Interface</h3>
+                        <p>Complex algorithms are hidden behind intuitive interfaces that make optimization accessible to users without technical backgrounds.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Interactive Maps</span>
+                            <span class="tech-tag">Visual Feedback</span>
+                            <span class="tech-tag">One-Click Solutions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title">TSP(ML) vs. Traditional Solutions</h2>
+            <div class="comparison-table">
+                <div class="comparison-row header">
+                    <div class="comparison-cell">Feature</div>
+                    <div class="comparison-cell">Traditional Methods</div>
+                    <div class="comparison-cell highlight">TSP(ML)</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Ease of Use</div>
+                    <div class="comparison-cell">Complex setup required</div>
+                    <div class="comparison-cell highlight">Simple web interface</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Speed</div>
+                    <div class="comparison-cell">Hours for large problems</div>
+                    <div class="comparison-cell highlight">Seconds to minutes</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Accessibility</div>
+                    <div class="comparison-cell">Requires technical expertise</div>
+                    <div class="comparison-cell highlight">Anyone can use</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Real-world Data</div>
+                    <div class="comparison-cell">Theoretical distances</div>
+                    <div class="comparison-cell highlight">Live traffic & routing data</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Mobile Support</div>
+                    <div class="comparison-cell">Desktop only</div>
+                    <div class="comparison-cell highlight">Web + iOS app</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Cost</div>
+                    <div class="comparison-cell">Expensive licensing</div>
+                    <div class="comparison-cell highlight">Free to use</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How accurate are the solutions provided by TSP(ML)?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our algorithms typically find solutions within 2-5% of the mathematically optimal route for most real-world problems. For practical purposes, this level of accuracy provides significant efficiency gains while being computed much faster than exact methods.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What's the maximum number of locations TSP(ML) can handle?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our web application can efficiently handle up to 50 locations, while our API can process problems with hundreds of locations. For larger problems, please contact us for enterprise solutions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Does TSP(ML) consider real-world constraints like traffic?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We integrate with live traffic data and mapping services to provide routes that consider actual travel times, road conditions, and traffic patterns. This makes our solutions practical for real-world use.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is TSP(ML) suitable for commercial use?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Many businesses use TSP(ML) for delivery route optimization, sales territory planning, and logistics management. We offer both free access for small-scale use and enterprise solutions for larger deployments.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How does TSP(ML) compare to Google Maps for multi-stop routes?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>While Google Maps excels at finding the best route between two points, it doesn't optimize the order of multiple stops. TSP(ML) specifically solves this optimization problem, often reducing total travel time by 20-40% compared to arbitrary stop ordering.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can I integrate TSP(ML) into my own application?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We provide a RESTful API that allows you to integrate our optimization algorithms into your own applications. Documentation and examples are available for developers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Experience TSP Optimization?</h2>
+            <p>Try our demo to see how TSP(ML) can optimize your routes in real-time.</p>
+            <div class="cta-buttons">
+                <a href="demo.html" class="btn btn-primary">Try the Demo</a>
+                <a href="contact.html" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TSP(ML)</h3>
+                    <p>Making optimization accessible to everyone through beautiful, intuitive interfaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="info.html">Learn</a></li>
+                        <li><a href="demo.html">Demo</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TSP(ML). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="info-interactive.js"></script>
+</body>
+</html>

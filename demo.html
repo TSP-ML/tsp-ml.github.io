@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSP Demo - TSP(ML)</title>
+    <meta name="description" content="Try TSP(ML) live demo. Input your locations and see our machine learning algorithms optimize your route in real-time.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">TSP(ML)</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="info.html" class="nav-link">Learn</a></li>
+                <li><a href="demo.html" class="nav-link active">Demo</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Interactive TSP Demo</h1>
+            <p>Experience the power of TSP(ML) optimization. Add locations, watch our algorithms work, and see the optimal route.</p>
+        </div>
+    </section>
+
+    <!-- Demo Interface -->
+    <section class="demo-interface">
+        <div class="container">
+            <div class="demo-layout">
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="panel-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Add Locations</h3>
+                        <div class="location-input">
+                            <input type="text" id="location-input" placeholder="Enter city or address..." class="input-field">
+                            <button id="add-location" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                        <div class="quick-examples">
+                            <span class="example-label">Quick examples:</span>
+                            <div class="example-buttons">
+                                <button class="example-btn" data-example="cities">Major Cities</button>
+                                <button class="example-btn" data-example="landmarks">NYC Landmarks</button>
+                                <button class="example-btn" data-example="europe">Europe Tour</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3><i class="fas fa-list"></i> Your Locations</h3>
+                        <div class="location-list" id="location-list">
+                            <div class="empty-state">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <p>No locations added yet. Start by adding your first destination above.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3><i class="fas fa-cogs"></i> Optimization</h3>
+                        <div class="optimization-controls">
+                            <button id="optimize-route" class="btn btn-primary" disabled>
+                                <i class="fas fa-route"></i> Optimize Route
+                            </button>
+                            <button id="clear-all" class="btn btn-outline">
+                                <i class="fas fa-trash"></i> Clear All
+                            </button>
+                        </div>
+                        <div class="algorithm-selector">
+                            <label for="algorithm-select">Algorithm:</label>
+                            <select id="algorithm-select" class="select-field">
+                                <option value="ml-hybrid">ML Hybrid (Recommended)</option>
+                                <option value="genetic">Genetic Algorithm</option>
+                                <option value="simulated-annealing">Simulated Annealing</option>
+                                <option value="nearest-neighbor">Nearest Neighbor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="panel-section" id="results-panel" style="display: none;">
+                        <h3><i class="fas fa-chart-line"></i> Results</h3>
+                        <div class="results-display">
+                            <div class="result-item">
+                                <span class="result-label">Total Distance:</span>
+                                <span class="result-value" id="total-distance">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Estimated Time:</span>
+                                <span class="result-value" id="estimated-time">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Improvement:</span>
+                                <span class="result-value" id="improvement">-</span>
+                            </div>
+                        </div>
+                        <div class="export-options">
+                            <button id="export-route" class="btn btn-outline">
+                                <i class="fas fa-download"></i> Export Route
+                            </button>
+                            <button id="share-route" class="btn btn-outline">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Container -->
+                <div class="map-container">
+                    <div id="map" class="interactive-map"></div>
+                    <div class="map-overlay" id="loading-overlay" style="display: none;">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Optimizing your route...</p>
+                        </div>
+                    </div>
+                    <div class="map-legend">
+                        <h4>Legend</h4>
+                        <div class="legend-item">
+                            <div class="legend-marker start"></div>
+                            <span>Start/End Point</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker waypoint"></div>
+                            <span>Waypoints</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line"></div>
+                            <span>Optimized Route</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Algorithm Explanation -->
+    <section class="algorithm-explanation">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="algorithm-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Input Processing</h3>
+                        <p>Your locations are geocoded and converted into a distance matrix using real-world travel data.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Algorithm Selection</h3>
+                        <p>Our ML system chooses the optimal algorithm based on the number of locations and their distribution.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Optimization</h3>
+                        <p>Advanced algorithms explore thousands of route combinations to find the most efficient path.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Results</h3>
+                        <p>The optimized route is displayed with turn-by-turn directions and efficiency metrics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase -->
+    <section class="features-showcase">
+        <div class="container">
+            <h2 class="section-title">Demo Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Real-World Data</h3>
+                    <p>Uses actual road networks and travel times, not just straight-line distances.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Smart Algorithms</h3>
+                    <p>Machine learning selects the best optimization strategy for your specific problem.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Works seamlessly on desktop, tablet, and mobile devices with touch support.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Export & Share</h3>
+                    <p>Export your optimized routes or share them with colleagues and friends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limitations Notice -->
+    <section class="limitations">
+        <div class="container">
+            <div class="notice-card">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notice-content">
+                    <h3>Demo Limitations</h3>
+                    <p>This demo is limited to 10 locations for performance reasons. Our full platform supports up to 50 locations via the web app and hundreds via our API. For enterprise needs with larger datasets, please contact us.</p>
+                    <div class="notice-actions">
+                        <a href="contact.html" class="btn btn-primary">Contact for Enterprise</a>
+                        <a href="about.html" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready for More?</h2>
+            <p>Experience the full power of TSP(ML) with our complete platform and mobile app.</p>
+            <div class="cta-buttons">
+                <a href="#ios-app" class="btn btn-primary">Download iOS App</a>
+                <a href="contact.html" class="btn btn-outline">Get API Access</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TSP(ML)</h3>
+                    <p>Making optimization accessible to everyone through beautiful, intuitive interfaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="info.html">Learn</a></li>
+                        <li><a href="demo.html">Demo</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TSP(ML). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>

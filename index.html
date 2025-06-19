@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSP(ML) - Solving the Travelling Salesman Problem for Everyone</title>
+    <meta name="description" content="TSP(ML) leverages machine learning and modern algorithms to make solving the Travelling Salesman Problem accessible to everyone through a clean, intuitive interface.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">TSP(ML)</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="info.html" class="nav-link">Learn</a></li>
+                <li><a href="demo.html" class="nav-link">Demo</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Solving the Travelling Salesman Problem for Everyone</h1>
+                <p class="hero-subtitle">
+                    TSP(ML) leverages machine learning and modern algorithms to make solving the most famous optimization problem accessible through a clean, intuitive interface.
+                </p>
+                <div class="hero-buttons">
+                    <a href="demo.html" class="btn btn-primary">Try the Web App</a>
+                    <a href="#ios-app" class="btn btn-secondary">Download on iOS</a>
+                    <a href="info.html" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="tsp-animation">
+                    <svg viewBox="0 0 400 300" class="route-svg">
+                        <!-- Cities -->
+                        <circle cx="80" cy="80" r="8" class="city" data-city="1"/>
+                        <circle cx="320" cy="60" r="8" class="city" data-city="2"/>
+                        <circle cx="350" cy="180" r="8" class="city" data-city="3"/>
+                        <circle cx="200" cy="220" r="8" class="city" data-city="4"/>
+                        <circle cx="50" cy="200" r="8" class="city" data-city="5"/>
+                        <circle cx="180" cy="120" r="8" class="city" data-city="6"/>
+                        
+                        <!-- Routes -->
+                        <g class="routes">
+                            <path d="M 80 80 L 180 120" class="route-line" stroke-dasharray="0,1000"/>
+                            <path d="M 180 120 L 320 60" class="route-line" stroke-dasharray="0,1000"/>
+                            <path d="M 320 60 L 350 180" class="route-line" stroke-dasharray="0,1000"/>
+                            <path d="M 350 180 L 200 220" class="route-line" stroke-dasharray="0,1000"/>
+                            <path d="M 200 220 L 50 200" class="route-line" stroke-dasharray="0,1000"/>
+                            <path d="M 50 200 L 80 80" class="route-line" stroke-dasharray="0,1000"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why TSP(ML)?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Machine Learning Powered</h3>
+                    <p>Advanced algorithms and machine learning techniques ensure optimal solutions for complex routing problems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Cross-Platform</h3>
+                    <p>Available as a web application and native iOS app, ensuring accessibility across all your devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3>Accessible Design</h3>
+                    <p>Built with accessibility in mind, featuring high-contrast design and the Atkinson Hyperlegible font.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fast & Efficient</h3>
+                    <p>Optimized algorithms provide quick solutions even for complex problems with multiple waypoints.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Real-World Integration</h3>
+                    <p>Seamlessly integrates with mapping services to provide practical, real-world routing solutions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Open Source</h3>
+                    <p>Built in the open with community contributions welcome. Transparent algorithms and implementations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Preview -->
+    <section class="team-preview">
+        <div class="container">
+            <h2 class="section-title">Meet the Team</h2>
+            <p class="section-subtitle">Four passionate developers solving real-world optimization problems</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Tarushv Kosgi</h3>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Taha Rawjani</h3>
+                    <p>ML Engineer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Aneesh Kandimalla</h3>
+                    <p>Frontend Developer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Eshan Nayak</h3>
+                    <p>iOS Developer</p>
+                </div>
+            </div>
+            <div class="cta-section">
+                <a href="about.html" class="btn btn-outline">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Optimize Your Routes?</h2>
+            <p>Join thousands of users who are already solving their routing problems with TSP(ML)</p>
+            <div class="cta-buttons">
+                <a href="demo.html" class="btn btn-primary">Try Demo</a>
+                <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TSP(ML)</h3>
+                    <p>Making optimization accessible to everyone through beautiful, intuitive interfaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="info.html">Learn</a></li>
+                        <li><a href="demo.html">Demo</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TSP(ML). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TSP(ML)</title>
+    <meta name="description" content="Get in touch with the TSP(ML) team. We'd love to hear from you, whether you have questions, feedback, or collaboration ideas.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">TSP(ML)</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="info.html" class="nav-link">Learn</a></li>
+                <li><a href="demo.html" class="nav-link">Demo</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you. Whether you have questions, feedback, or collaboration ideas, don't hesitate to reach out.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Send us a Message</h2>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name *</label>
+                                <input type="text" id="first-name" name="firstName" required class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name *</label>
+                                <input type="text" id="last-name" name="lastName" required class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required class="form-select">
+                                <option value="">Select a subject...</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="enterprise">Enterprise Solutions</option>
+                                <option value="api">API Access</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="press">Press Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required class="form-textarea" rows="6" placeholder="Tell us more about your inquiry..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter" class="form-checkbox">
+                                <span class="checkmark"></span>
+                                Subscribe to our newsletter for updates and new features
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Other Ways to Reach Us</h2>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-content">
+                                <h3>Email</h3>
+                                <p>hello@tsp-ml.com</p>
+                                <p class="method-note">We respond within 24 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="method-content">
+                                <h3>GitHub</h3>
+                                <p>github.com/tsp-ml</p>
+                                <p class="method-note">Contribute to our open source project</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <div class="method-content">
+                                <h3>Twitter</h3>
+                                <p>@tsp_ml</p>
+                                <p class="method-note">Follow us for updates and announcements</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="method-content">
+                                <h3>LinkedIn</h3>
+                                <p>linkedin.com/company/tsp-ml</p>
+                                <p class="method-note">Connect with our team professionally</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="response-times">
+                        <h3>Response Times</h3>
+                        <ul>
+                            <li><strong>General Inquiries:</strong> Within 24 hours</li>
+                            <li><strong>Technical Support:</strong> Within 12 hours</li>
+                            <li><strong>Enterprise Solutions:</strong> Within 4 hours</li>
+                            <li><strong>Partnership Inquiries:</strong> Within 48 hours</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="contact-faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions. Can't find what you're looking for? Use the contact form above.</p>
+            
+            <div class="faq-grid">
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <h3>How do I get API access?</h3>
+                        <p>API access is available for developers and businesses. Contact us through the form above with "API Access" as the subject, and we'll get you set up with documentation and credentials.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is TSP(ML) free to use?</h3>
+                        <p>Our web demo is completely free with a limit of 10 locations. For larger problems or commercial use, we offer various plans including enterprise solutions.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can you help with custom implementations?</h3>
+                        <p>Yes! We offer consulting services for custom optimization problems and can help integrate TSP(ML) into your existing systems. Contact us for a consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <h3>Do you offer technical support?</h3>
+                        <p>We provide technical support for all our users. Free users get community support, while premium and enterprise customers receive priority support.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How can I contribute to the project?</h3>
+                        <p>We welcome contributions! Check out our GitHub repository for open issues, or reach out to discuss new features and improvements you'd like to work on.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Are you hiring?</h3>
+                        <p>We're always interested in connecting with talented developers and researchers. Send us your resume and let us know how you'd like to contribute to making optimization accessible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Twitter Feed Section -->
+    <section class="twitter-feed">
+        <div class="container">
+            <h2 class="section-title">Latest Updates</h2>
+            <p class="section-subtitle">Follow our journey and get the latest news about TSP(ML)</p>
+            
+            <div class="twitter-container">
+                <!-- In a real implementation, this would use Twitter's embed API -->
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="tweet-info">
+                            <h4>TSP(ML) @tsp_ml</h4>
+                            <span class="tweet-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <p class="tweet-content">
+                        🚀 Exciting news! We just optimized our 100,000th route! Thanks to all our users for helping us make optimization accessible to everyone. #TSP #MachineLearning #Optimization
+                    </p>
+                    <div class="tweet-actions">
+                        <span><i class="fas fa-retweet"></i> 42</span>
+                        <span><i class="fas fa-heart"></i> 128</span>
+                        <span><i class="fas fa-share"></i> 23</span>
+                    </div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="tweet-info">
+                            <h4>TSP(ML) @tsp_ml</h4>
+                            <span class="tweet-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <p class="tweet-content">
+                        📱 iOS app update coming soon with enhanced route visualization and offline optimization capabilities. Beta testers, check your TestFlight! #iOS #MobileOptimization
+                    </p>
+                    <div class="tweet-actions">
+                        <span><i class="fas fa-retweet"></i> 67</span>
+                        <span><i class="fas fa-heart"></i> 203</span>
+                        <span><i class="fas fa-share"></i> 34</span>
+                    </div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="tweet-info">
+                            <h4>TSP(ML) @tsp_ml</h4>
+                            <span class="tweet-time">3 days ago</span>
+                        </div>
+                    </div>
+                    <p class="tweet-content">
+                        🎓 Great to see TSP(ML) being used in computer science courses! If you're an educator interested in using our platform for teaching optimization, reach out for educational discounts.
+                    </p>
+                    <div class="tweet-actions">
+                        <span><i class="fas fa-retweet"></i> 91</span>
+                        <span><i class="fas fa-heart"></i> 156</span>
+                        <span><i class="fas fa-share"></i> 45</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="twitter-cta">
+                <a href="#" class="btn btn-primary">
+                    <i class="fab fa-twitter"></i>
+                    Follow @tsp_ml
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Try our demo or reach out to learn more about how TSP(ML) can help optimize your routes.</p>
+            <div class="cta-buttons">
+                <a href="demo.html" class="btn btn-primary">Try the Demo</a>
+                <a href="#contact-form" class="btn btn-outline">Send a Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TSP(ML)</h3>
+                    <p>Making optimization accessible to everyone through beautiful, intuitive interfaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="info.html">Learn</a></li>
+                        <li><a href="demo.html">Demo</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TSP(ML). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Contact form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            
+            if (contactForm) {
+                window.TSPApp.handleFormSubmit('contact-form', async (data) => {
+                    // Simulate form submission
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    console.log('Form submitted:', data);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
